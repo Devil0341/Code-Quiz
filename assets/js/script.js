@@ -10,8 +10,8 @@ var multipleChoices;
 var questions;
 var timerEl = document.querySelector('#clock');
 var count;
-var timerCount;
-var wrongChoice = false;
+var timerCount = 5;//initialized timer--may need to initialize in the start gane function
+var wrongChoice = true;
 //starting score & starting time
 totScore = 70;
 
@@ -25,18 +25,17 @@ function timer(){
     count = setInterval(function() {
             timerCount--;
             timerEl.textContent = timerCount;
-                // if (timerCount >=0) {
-                //     //need to subtract 10 seconds for wrong answer
-                //     if (wrongChoice && timerCount >0) {
-                //         totScore += -10;
-                //     }
-                // }
+            //subtract 10 seconds from timer and push to totScore     
+            // if (timerCount >=0 && wrongChoice) {
+            //     timerCount = timerCount-10
+            //    {
         //Test if time has ran out
         if (timerCount === 0) {
             //Clears the interval
             clearInterval(count);
             }
     }, 1000)
+    return timerCount;
 
 }
-startButton.addEventListener("click", timer());
+startButton.addEventListener("click", timer);
