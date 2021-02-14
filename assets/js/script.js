@@ -12,7 +12,7 @@ var timerEl = document.querySelector('#clock');
 var count;
 var timerCount;
 var wrongChoice = false;
-//starting score
+//starting score & starting time
 totScore = 70;
 
 //---start game function, starts timer, presents questions and mltpl choices button
@@ -25,12 +25,12 @@ function timer(){
     count = setInterval(function() {
             timerCount--;
             timerEl.textContent = timerCount;
-                if (timerCount >=0) {
-                    //need to subtract 10 seconds for wrong answer
-                    if (wrongChoice && timerCount >0) {
-                        totScore += -10;
-                    }
-                }
+                // if (timerCount >=0) {
+                //     //need to subtract 10 seconds for wrong answer
+                //     if (wrongChoice && timerCount >0) {
+                //         totScore += -10;
+                //     }
+                // }
         //Test if time has ran out
         if (timerCount === 0) {
             //Clears the interval
@@ -39,4 +39,4 @@ function timer(){
     }, 1000)
 
 }
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", timer());
