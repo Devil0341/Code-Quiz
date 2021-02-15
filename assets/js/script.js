@@ -133,6 +133,8 @@ function displayQuestion(question) {
     var libutton4 = li4.document.createElement('button');
 
     // add questions from quizQuestions to each li
+
+    olElem.textContent = 'Choose from the muiltiple choice answers below'
     li1.textContent = quizQuestion.answers.a;
     li2.textContent = quizQuestions.answers.b;
     li3.textContent = quizQuestions.answers.c;
@@ -144,10 +146,11 @@ function displayQuestion(question) {
 
 
     // Append list items to ordered list element
-    document.getElementById('answerChoices').olElem.appendChild(libutton1);
-    document.getElementById('answerChoices').olElem.appendChild(libutton2);
-    document.getElementById('answerChoices').olElem.appendChild(libutton3);
-    document.getElementById('answerChoices').olElem.appendChild(libutton4);
+    document.getElementById('answerChoices').append(olElem)
+    document.getElementById('answer-a').appendChild(libutton1);
+    document.getElementById('answer-b').appendChild(libutton2);
+    document.getElementById('answer-c').appendChild(libutton3);
+    document.getElementById('answer-d').appendChild(libutton4);
 
     //set attributes next
 
