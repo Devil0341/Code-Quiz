@@ -10,32 +10,101 @@ var multipleChoices;
 var questions;
 var timerEl = document.querySelector('#clock');
 var count;
-var timerCount = 5;//initialized timer--may need to initialize in the start gane function
+var timerCount = 70;//initialized timer--may need to initialize in the start gane function
 var wrongChoice = true;
 //starting score & starting time
 totScore = 70;
 
 //---start game function, starts timer, presents questions and mltpl choices button
-// function startGame(){
-//     timer()
-// }
+function startGame() {
+    startButton.disabled = true;
+    userAnswers()
+    timer()
+}
 
 //---timer function will get called at the start game function
-function timer(){
-    count = setInterval(function() {
-            timerCount--;
-            timerEl.textContent = timerCount;
-            //subtract 10 seconds from timer and push to totScore     
-            // if (timerCount >=0 && wrongChoice) {
-            //     timerCount = timerCount-10
-            //    {
+function timer() {
+    count = setInterval(function () {
+        timerCount--;
+        timerEl.textContent = timerCount;
         //Test if time has ran out
         if (timerCount === 0) {
             //Clears the interval
             clearInterval(count);
-            }
+        }
     }, 1000)
     return timerCount;
 
 }
 startButton.addEventListener("click", timer);
+
+//---------------Function for the questions in quiz
+function userAnswers() {
+    //this will store the html output
+    var output = []
+    for (var i = 0; i<)
+    var quizQuestions = [
+        {
+            question: 'Commonly used data type Do Not include?',//key&value
+            answers: {//key and the value is an object with key values in it.
+                a: 'strings',
+                b: 'Boolean',
+                c: 'alerts',
+                d: 'None of the above',
+                e: 'numbers'
+            },
+            correctAnswer: 'c'//key&value
+        },
+        {
+            question: 'The condition in an if/else statement is enclosed within?',
+            answers: {
+                a: 'curly brackets',
+                b: 'quotes',
+                c: 'parentheses',
+                d: 'None of the above',
+                e: 'square brackets'
+            },
+            correctAnswer: 'c'
+
+        },
+        {
+            question: 'Arrays in JavaScript can be used to store?',
+            answers: {
+                a: 'numbers and strings',
+                b: 'others Arrays',
+                c: 'boolean',
+                d: 'objects',
+                e: 'all of the above'
+            },
+            correctAnswer: 'e'
+
+        },
+        {
+            question: 'String values must be enclosed within --- when being assigned to variables?',
+            answers: {
+                a: 'commas',
+                b: 'curly brackets',
+                c: 'quotes',
+                d: 'parentheses',
+                e: 'None of the above'
+            },
+            correctAnswer: 'c'
+
+        },
+        {
+            question: 'A very useful tool used during development and debugging for printing content to the debugger is?',
+            answers: {
+                a: 'JavaScript',
+                b: 'terminal/bash',
+                c: 'alerts',
+                d: 'console.log',
+                e: 'None of the above'
+            },
+            correctAnswer: 'c'
+
+        },
+    ]
+
+}
+
+//---------Function for form submit initials and read results
