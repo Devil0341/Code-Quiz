@@ -127,10 +127,10 @@ function displayQuestion(question) {
     var submitInitials = document.createElement('form');
     
     //create buttons for inside li??
-    var libutton1 = li1.document.createElement('button');//Unsure here to create button in li
-    var libutton2 = li2.document.createElement('button');
-    var libutton3 = li3.document.createElement('button');
-    var libutton4 = li4.document.createElement('button');
+    // var libutton1 = li1.document.createElement('button');//Unsure here to create button in li
+    // var libutton2 = li2.document.createElement('button');
+    // var libutton3 = li3.document.createElement('button');
+    // var libutton4 = li4.document.createElement('button');
 
     // add questions from quizQuestions to each li
 
@@ -147,26 +147,26 @@ function displayQuestion(question) {
 
     // Append list items to ordered list element
     document.getElementById('answerChoices').append(olElem)
-    document.getElementById('answer-a').appendChild(libutton1);
-    document.getElementById('answer-b').appendChild(libutton2);
-    document.getElementById('answer-c').appendChild(libutton3);
-    document.getElementById('answer-d').appendChild(libutton4);
+    document.getElementById('answer-a').appendChild(li1);
+    document.getElementById('answer-b').appendChild(li2);
+    document.getElementById('answer-c').appendChild(li3);
+    document.getElementById('answer-d').appendChild(li4);
 
     //set attributes next
 
 } //end of diplay block
 
-//add event listener and logic for buttons in questions and submit form---stuck here!!!
-olElem.addEventListener('click', function () {
-    if ((libutton1 = !correctAnswer)||
-        (libutton2 = !correctAnswer)||
-        (libutton3 = !correctAnswer)||
-        (libutton4 = !correctAnswer)) {
-        timerCount = timerCount - 10
-        totScore = totScore - 10
-    }
-    else displayQuestion(currentQuestion) //move to next question??
-}
+// //add event listener and logic for buttons in questions and submit form---stuck here!!!
+// olElem.addEventListener('click', function () {
+//     if ((libutton1 = !correctAnswer)||
+//         (libutton2 = !correctAnswer)||
+//         (libutton3 = !correctAnswer)||
+//         (libutton4 = !correctAnswer)) {
+//         timerCount = timerCount - 10
+//         totScore = totScore - 10
+//     }
+//     else displayQuestion(currentQuestion) //move to next question??
+// }
 
 //---------Function for form submit initials and read results
 
