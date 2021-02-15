@@ -109,12 +109,18 @@ startButton.addEventListener("click", timer);
 
 //---Function for the questions in quiz
 function displayQuestion(question) {
-    console.log(question);
-    if (quizQuestions[!correctAnswer]){
-        timerCount = timerCount-10
-        totScore = timerCount-70
-    }
-    return;
+    console.log('display question:', question);//to see what this object contains
+
+    var questionElem = document.createElement('h3');//creates an empty h3 tag, stores in questionElem
+
+    questionElem.textContent = question.question;//put text into my h3
+
+    document.getElementById('question').append(questionElem);//stick my questionElem into #question
+    
+    //these answers need to have buttons
+    var answerElem = document.createElement('h3');
+    answerElem.textContent = answers.answerChoices;//not sure here???????????????
+    document.getElementById('answerChoices').append(answerElem);
     
 }
 
