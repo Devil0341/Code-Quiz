@@ -115,41 +115,54 @@ function displayQuestion(question) {
 
     //these answers need to have buttons in a ol
 
-    //create ordered list, li and buttons
+    //create ordered list, li and buttons, form, and score tags
     var olElem = document.createElement('ol');//??
     var li1 = document.createElement('li');
     var li2 = document.createElement('li');
     var li3 = document.createElement('li');
     var li4 = document.createElement('li');
-   //create form for intitals and results on second page
+    var score = document.createElement('div')
+
+    //create form for intitals and results on second page??
     var submitInitials = document.createElement('form');
+    
+    //create buttons for inside li??
+    var libutton1 = li1.document.createElement('button');//Unsure here to create button in li
+    var libutton2 = li2.document.createElement('button');
+    var libutton3 = li3.document.createElement('button');
+    var libutton4 = li4.document.createElement('button');
 
     // add questions from quizQuestions to each li
     li1.textContent = quizQuestion.answers.a;
     li2.textContent = quizQuestions.answers.b;
     li3.textContent = quizQuestions.answers.c;
     li4.textContent = quizQuestions.answers.d;
-    
-    //create buttons of li
-    var libutton1 = li1.document.createElement('button');//Unsure here to create button in li
-   
+
+    //score write to html may need to use location
+    score.textContent = totScore
+    document.getElementById('results').append(score);
+
+
     // Append list items to ordered list element
     document.getElementById('answerChoices').olElem.appendChild(libutton1);
-    document.getElementById('answerChoices').olElem.appendChild(li2);
-    document.getElementById('answerChoices').olElem.appendChild(li3);
-    document.getElementById('answerChoices').olElem.appendChild(li4);
+    document.getElementById('answerChoices').olElem.appendChild(libutton2);
+    document.getElementById('answerChoices').olElem.appendChild(libutton3);
+    document.getElementById('answerChoices').olElem.appendChild(libutton4);
 
     //set attributes next
 
+} //end of diplay block
 
-}
-//add event listener and logic for buttons in questions and submit form
-libutton1.addEventListener('click', function() {
-    if (libutton1 = !correctAnswer){
-        timerCount = timerCount-10
-        totScore = totScore-10
+//add event listener and logic for buttons in questions and submit form---stuck here!!!
+olElem.addEventListener('click', function () {
+    if ((libutton1 = !correctAnswer)||
+        (libutton2 = !correctAnswer)||
+        (libutton3 = !correctAnswer)||
+        (libutton4 = !correctAnswer)) {
+        timerCount = timerCount - 10
+        totScore = totScore - 10
     }
-    else displayQuestion(question) //move to next question
+    else displayQuestion(currentQuestion) //move to next question??
 }
 
 //---------Function for form submit initials and read results
