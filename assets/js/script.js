@@ -36,8 +36,7 @@ var quizQuestions = [
             a: 'curly brackets',
             b: 'quotes',
             c: 'parentheses',
-            d: 'None of the above',
-            e: 'square brackets'
+            d: 'square brackets'
         },
         correctAnswer: 'c'
 
@@ -48,10 +47,9 @@ var quizQuestions = [
             a: 'numbers and strings',
             b: 'others Arrays',
             c: 'boolean',
-            d: 'objects',
-            e: 'all of the above'
+            d: 'all of the above'
         },
-        correctAnswer: 'e'
+        correctAnswer: 'd'
 
     },
     {
@@ -61,7 +59,6 @@ var quizQuestions = [
             b: 'curly brackets',
             c: 'quotes',
             d: 'parentheses',
-            e: 'None of the above'
         },
         correctAnswer: 'c'
 
@@ -73,7 +70,6 @@ var quizQuestions = [
             b: 'terminal/bash',
             c: 'alerts',
             d: 'console.log',
-            e: 'None of the above'
         },
         correctAnswer: 'd'
 
@@ -105,7 +101,7 @@ function timer() {
     return timerCount;
 
 }
-startButton.addEventListener("click", timer);
+startButton.addEventListener('click', timer);
 
 //---Function for the questions in quiz
 function displayQuestion(question) {
@@ -116,12 +112,46 @@ function displayQuestion(question) {
     questionElem.textContent = question.question;//put text into my h3
 
     document.getElementById('question').append(questionElem);//stick my questionElem into #question
+
+    //these answers need to have buttons in a ol
+
+    //create ordered list, li and buttons
+    var olElem = document.createElement('ol');//??
+    var li1 = document.createElement('li');
+    var li2 = document.createElement('li');
+    var li3 = document.createElement('li');
+    var li4 = document.createElement('li');
+   //create form for intitals and results on second page
+    var submitInitials = document.createElement('form');
+
+    // add questions from quizQuestions to each li
+    li1.textContent = quizQuestion.answers.a;
+    li2.textContent = quizQuestions.answers.b;
+    li3.textContent = quizQuestions.answers.c;
+    li4.textContent = quizQuestions.answers.d;
     
-    //these answers need to have buttons
-    var answerElem = document.createElement('h3');
-    answerElem.textContent = answers.answerChoices;//not sure here???????????????
-    document.getElementById('answerChoices').append(answerElem);
-    
+    //create buttons of li
+    var libutton1 = li1.document.createElement('button');//Unsure here to create button in li
+   
+    // Append list items to ordered list element
+    document.getElementById('answerChoices').olElem.appendChild(libutton1);
+    document.getElementById('answerChoices').olElem.appendChild(li2);
+    document.getElementById('answerChoices').olElem.appendChild(li3);
+    document.getElementById('answerChoices').olElem.appendChild(li4);
+
+    //set attributes next
+
+
+}
+//add event listener and logic for buttons in questions and submit form
+libutton1.addEventListener('click', function() {
+    if (libutton1 = !correctAnswer){
+        timerCount = timerCount-10
+        totScore = totScore-10
+    }
+    else displayQuestion(question) //move to next question
 }
 
 //---------Function for form submit initials and read results
+
+//need local storage function
