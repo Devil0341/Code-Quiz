@@ -6,12 +6,12 @@
 
 
 var startButton = document.querySelector('#start-button');
-var multipleChoices;
 // var questions;//commented out not sure if I need this
 var timerEl = document.querySelector('#clock');
 var count;
 var timerCount = 70;//initialized timer--may need to initialize in the start gane function
 var wrongChoice = true;
+var correctChoice = false;
 //starting score & starting time
 totScore = 70;
 
@@ -79,10 +79,11 @@ var quizQuestions = [
 //---start game function, starts timer, presents questions and mltpl choices button
 function startGame() {
     startButton.disabled = true;
-    timer();
+    correctChoice= false;
     currentQuestionIndex = 0;
     var currentQuestion = quizQuestions[currentQuestionIndex];
     displayQuestion(currentQuestion);
+    timer();
 }
 
 
@@ -127,15 +128,26 @@ function displayQuestion(question) {
     var btnElD =document.createElement('button');
     btnElD.textContent = quizQuestions[0].answers.d;
     document.getElementById('answer-d').appendChild(btnElD);
-}
-
-//addEventlistener for each button That button takes answer that was selected, gets it from the target that was clicked. Compares that answer to the correct answer from the current Question, adjusts the score if it’s right, then it increments the current question by 1 and calls display question again.
-btnElA.addEventListener('click', function () {
-     if (btnElA === correctAnswer){
-         
-
-     }
-    });
+//---------------------------------
+   //Instead of addEventListener I am using this when user clicks on any button check answer function will run and deduct 10s or iterate forward
+//????????????????????????????????????
+    <input type = "button" onclick = "checkAnswer()" value = "displayQuestion">
+    function checkAnswer(){
+        //if the currentQuestion is true, check if the button clicked matches the key a,b,c,d in the object
+        if (currentQuestion){
+            if (correctAnswer === quizQuestions[i].answers('key'){
+                correctChoice = true;
+            }
+    }else {
+            //if correctChoice is false then -10 seconds from totScore and time
+            timerCount = timerCount-10;
+            var reduceScore = timerCount-10;
+            totScore = reduceScore
+        }//end of checkAnswers block
+        return displayQuestion()
+    }
+});
+//addEventListener
 //---------Function for form submit initials and read results
 
 //need local storage function
