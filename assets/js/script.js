@@ -25,8 +25,7 @@ var quizQuestions = [
             a: 'strings',
             b: 'Boolean',
             c: 'alerts',
-            d: 'None of the above',
-            e: 'numbers'
+            d:'numbers',
         },
         correctAnswer: 'c'//key&value
     },
@@ -107,50 +106,31 @@ startButton.addEventListener('click', timer);
 function displayQuestion(question) {
     console.log('display question:', question);//to see what this object contains
 
-    var questionElem = document.createElement('h3');//creates an empty h3 tag, stores in questionElem
+    // var questionElem = document.createElement('h3');//creates an empty h3 tag, stores in questionElem
 
-    questionElem.textContent = question.question;//put text into my h3
+    // questionElem.textContent = question.question;//put text into my h3
 
-    document.getElementById('question').append(questionElem);//stick my questionElem into #question
-
-    //these answers need to have buttons in a ol
-
-    //create ordered list, li and buttons, form, and score tags
-    var olElem = document.createElement('ol');//??
-    var li1 = document.createElement('li');
-    var li2 = document.createElement('li');
-    var li3 = document.createElement('li');
-    var li4 = document.createElement('li');
-    var score = document.createElement('div')
+    // document.getElementById('question').append(questionElem);//stick my questionElem into #question
+    
+    document.getElementById('answer-a').textContent = quizQuestions[0].answers.a;
+    document.getElementById('answer-b').textContent = quizQuestions[0].answers.b;
+    document.getElementById('answer-c').textContent = quizQuestions[0].answers.c;
+    document.getElementById('answer-d').textContent = quizQuestions[0].answers.d;
+ 
 
     //create form for intitals and results on second page??
-    var submitInitials = document.createElement('form');
-    
-    //create buttons for inside li??
-    // var libutton1 = li1.document.createElement('button');//Unsure here to create button in li
-    // var libutton2 = li2.document.createElement('button');
-    // var libutton3 = li3.document.createElement('button');
-    // var libutton4 = li4.document.createElement('button');
+    // var submitInitials = document.createElement('form');
 
-    // add questions from quizQuestions to each li
-
-    olElem.textContent = 'Choose from the muiltiple choice answers below'
-    li1.textContent = quizQuestion.answers.a;
-    li2.textContent = quizQuestions.answers.b;
-    li3.textContent = quizQuestions.answers.c;
-    li4.textContent = quizQuestions.answers.d;
 
     //score write to html may need to use location
-    score.textContent = totScore
-    document.getElementById('results').append(score);
+    // var score 
+    // score.textContent = totScore
+    // document.getElementById('results').append(score);
 
 
-    // Append list items to ordered list element
-    document.getElementById('answerChoices').append(olElem)
-    document.getElementById('answer-a').appendChild(li1);
-    document.getElementById('answer-b').appendChild(li2);
-    document.getElementById('answer-c').appendChild(li3);
-    document.getElementById('answer-d').appendChild(li4);
+    
+    //create form for intitals and results on second page??
+    // var submitInitials = document.createElement('form');
 
     //set attributes next
 
