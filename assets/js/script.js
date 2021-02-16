@@ -7,7 +7,7 @@
 
 var startButton = document.querySelector('#start-button');
 var multipleChoices;
-var questions;
+// var questions;//commented out not sure if I need this
 var timerEl = document.querySelector('#clock');
 var count;
 var timerCount = 70;//initialized timer--may need to initialize in the start gane function
@@ -100,54 +100,42 @@ function timer() {
     return timerCount;
 
 }
-startButton.addEventListener('click', timer);
+startButton.addEventListener('click', startGame);
 
 //---Function for the questions in quiz
 function displayQuestion(question) {
-    console.log('display question:', question);//to see what this object contains
+    // console.log('display question:', questions);//to see what this object contains
 
-    // var questionElem = document.createElement('h3');//creates an empty h3 tag, stores in questionElem
+    var questionElem = document.createElement('h3');//creates an empty h3 tag, stores in questionElem
 
-    // questionElem.textContent = question.question;//put text into my h3
+    questionElem.textContent = question.question;//put text into my h3
 
-    // document.getElementById('question').append(questionElem);//stick my questionElem into #question
+    document.getElementById('question').append(questionElem);//stick my questionElem into #question
+
+    var btnElA = document.createElement('button');//creates the button for multiple choice
+    btnElA.textContent = quizQuestions[0].answers.a;//access the array object for iteration and write it to the html
+    document.getElementById('answer-a').appendChild(btnElA);//access the assoc div and append the button with content
     
-    document.getElementById('answer-a').textContent = quizQuestions[0].answers.a;
-    document.getElementById('answer-b').textContent = quizQuestions[0].answers.b;
-    document.getElementById('answer-c').textContent = quizQuestions[0].answers.c;
-    document.getElementById('answer-d').textContent = quizQuestions[0].answers.d;
- 
+    var btnElB =document.createElement('button');
+    btnElB.textContent = quizQuestions[0].answers.b;
+    document.getElementById('answer-b').appendChild(btnElB);
 
-    //create form for intitals and results on second page??
-    // var submitInitials = document.createElement('form');
+    var btnElC =document.createElement('button');
+    btnElC.textContent = quizQuestions[0].answers.c;
+    document.getElementById('answer-c').appendChild(btnElC);
 
+    var btnElD =document.createElement('button');
+    btnElD.textContent = quizQuestions[0].answers.d;
+    document.getElementById('answer-d').appendChild(btnElD);
+}
 
-    //score write to html may need to use location
-    // var score 
-    // score.textContent = totScore
-    // document.getElementById('results').append(score);
+//addEventlistener for each button That button takes answer that was selected, gets it from the target that was clicked. Compares that answer to the correct answer from the current Question, adjusts the score if it’s right, then it increments the current question by 1 and calls display question again.
+btnElA.addEventListener('click', function () {
+     if (btnElA === correctAnswer){
+         
 
-
-    
-    //create form for intitals and results on second page??
-    // var submitInitials = document.createElement('form');
-
-    //set attributes next
-
-} //end of diplay block
-
-// //add event listener and logic for buttons in questions and submit form---stuck here!!!
-// olElem.addEventListener('click', function () {
-//     if ((libutton1 = !correctAnswer)||
-//         (libutton2 = !correctAnswer)||
-//         (libutton3 = !correctAnswer)||
-//         (libutton4 = !correctAnswer)) {
-//         timerCount = timerCount - 10
-//         totScore = totScore - 10
-//     }
-//     else displayQuestion(currentQuestion) //move to next question??
-// }
-
+     }
+    });
 //---------Function for form submit initials and read results
 
 //need local storage function
