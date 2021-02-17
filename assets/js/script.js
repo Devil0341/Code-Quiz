@@ -25,7 +25,7 @@ var quizQuestions = [
             a: 'strings',
             b: 'Boolean',
             c: 'alerts',
-            d:'numbers',
+            d: 'numbers',
         },
         correctAnswer: 'c'//key&value
     },
@@ -79,7 +79,7 @@ var quizQuestions = [
 //---start game function, starts timer, presents questions and mltpl choices button
 function startGame() {
     startButton.disabled = true;
-    correctChoice= false;
+    correctChoice = false;
     currentQuestionIndex = 0;
     var currentQuestion = quizQuestions[currentQuestionIndex];
     displayQuestion(currentQuestion);
@@ -116,38 +116,50 @@ function displayQuestion(question) {
     var btnElA = document.createElement('button');//creates the button for multiple choice
     btnElA.textContent = quizQuestions[0].answers.a;//access the array object for iteration and write it to the html
     document.getElementById('answer-a').appendChild(btnElA);//access the assoc div and append the button with content
-    
-    var btnElB =document.createElement('button');
+
+    var btnElB = document.createElement('button');
     btnElB.textContent = quizQuestions[0].answers.b;
     document.getElementById('answer-b').appendChild(btnElB);
 
-    var btnElC =document.createElement('button');
+    var btnElC = document.createElement('button');
     btnElC.textContent = quizQuestions[0].answers.c;
     document.getElementById('answer-c').appendChild(btnElC);
 
-    var btnElD =document.createElement('button');
+    var btnElD = document.createElement('button');
     btnElD.textContent = quizQuestions[0].answers.d;
     document.getElementById('answer-d').appendChild(btnElD);
-//---------------------------------
-   //Instead of addEventListener I am using this when user clicks on any button check answer function will run and deduct 10s or iterate forward
-//????????????????????????????????????
-    <input type = "button" onclick = "checkAnswer()" value = "displayQuestion">
-    function checkAnswer(){
-        //if the currentQuestion is true, check if the button clicked matches the key a,b,c,d in the object
-        if (currentQuestion){
-            if (correctAnswer === quizQuestions[i].answers('key'){
-                correctChoice = true;
-            }
-    }else {
-            //if correctChoice is false then -10 seconds from totScore and time
-            timerCount = timerCount-10;
-            var reduceScore = timerCount-10;
-            totScore = reduceScore
-        }//end of checkAnswers block
-        return displayQuestion()
+    //---------------------------------
+    //Instead of addEventListener I am using this when user clicks on any button execute rightAnswer  or wrongAnswer function
+    //????????????????????????????????????
+    btnELA.setAttribute("onClick", "rightAnswer()")
+    btnELA.setAttribute("onClick", "wrongAnswer()")
+    btnELB.setAttribute("onClick", "rightAnswer()")
+    btnELB.setAttribute("onClick", "wrongAnswer()")
+    btnELC.setAttribute("onClick", "rightAnswer()")
+    btnELC.setAttribute("onClick", "wrongAnswer()")
+    btnELD.setAttribute("onClick", "rightAnswer()")
+    btnELD.setAttribute("onClick", "wrongAnswer()")
+});//end of displayQuestions block
+
+function wrongAnswer() {
+    if (onclick) {
+        timerCount = timerCount - 10;
+        var reduceScore = timerCount - 10;
+        totScore = reduceScore
     }
-});
-//addEventListener
+    displayQuestion()
+}
+
+function rightAnswer() {
+    if (currentQuestion) {
+        if (correctAnswer === quizQuestions[i].answers['key'] {
+            correctChoice = true;
+        }
+    }
+    displayQuestion()
+}
+
 //---------Function for form submit initials and read results
 
 //need local storage function
+//Got rid of checkAnswers function
