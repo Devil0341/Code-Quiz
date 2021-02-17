@@ -6,12 +6,12 @@
 
 
 var startButton = document.querySelector('#start-button');
-// var questions;//commented out not sure if I need this
 var timerEl = document.querySelector('#clock');
 var count;
 var timerCount = 70;//initialized timer--may need to initialize in the start gane function
-var wrongChoice = true;
-var correctChoice = false;
+var question;
+var wrongChoice = false;
+var rightChoice = false;
 //starting score & starting time
 totScore = 70;
 
@@ -79,7 +79,7 @@ var quizQuestions = [
 //---start game function, starts timer, presents questions and mltpl choices button
 function startGame() {
     startButton.disabled = true;
-    correctChoice = false;
+    rightChoice = false;//????????? not sure if i need this here
     currentQuestionIndex = 0;
     var currentQuestion = quizQuestions[currentQuestionIndex];
     displayQuestion(currentQuestion);
@@ -129,37 +129,43 @@ function displayQuestion(question) {
     btnElD.textContent = quizQuestions[0].answers.d;
     document.getElementById('answer-d').appendChild(btnElD);
     //---------------------------------
-    //Instead of addEventListener I am using this when user clicks on any button execute rightAnswer  or wrongAnswer function
+    //Instead of addEventListener I am using this when user clicks on any button execute checkAnswer which will run the rightAnswer or wrongAnswer function
     //????????????????????????????????????
-    btnELA.setAttribute("onClick", "rightAnswer()")
-    btnELA.setAttribute("onClick", "wrongAnswer()")
-    btnELB.setAttribute("onClick", "rightAnswer()")
-    btnELB.setAttribute("onClick", "wrongAnswer()")
-    btnELC.setAttribute("onClick", "rightAnswer()")
-    btnELC.setAttribute("onClick", "wrongAnswer()")
-    btnELD.setAttribute("onClick", "rightAnswer()")
-    btnELD.setAttribute("onClick", "wrongAnswer()")
-});//end of displayQuestions block
+    btnElA.setAttribute("onClick", "checkAnswer()");
+    btnElB.setAttribute("onClick", "checkAnswer()");
+    btnElC.setAttribute("onClick", "checkAnswer()");
+    btnElD.setAttribute("onClick", "checkAnswer()");
+};//end of displayQuestions block
 
-function wrongAnswer() {
-    if (onclick) {
-        timerCount = timerCount - 10;
-        var reduceScore = timerCount - 10;
-        totScore = reduceScore
+// When a button is clicked checkAnswer function will run rightAnswer or wrongAnswer function if conditional is met
+function checkAnswer(event) {
+    if (quizQuestions[0].correctAnswer === quizQuestions.answers) {
+        rightChoice = true;
+        rightAnswer();
     }
-    displayQuestion()
-}
+    else {
+        wrongChoice = true;
+        wrongAnswer();
 
-function rightAnswer() {
-    if (currentQuestion) {
-        if (correctAnswer === quizQuestions[i].answers['key'] {
-            correctChoice = true;
+    }
+    //functions to run if conditional is met
+    //if user gets the multiple choice question correct, move to next question
+    function rightAnswer() {
+        if (rightChoice) {
+            displayQuestion()
         }
     }
-    displayQuestion()
-}
+    //if user gets multiple choice question incorrect, subtract 10 from totScore and reduce time by 10 seconds and move user to next question
+    function wrongAnswer() {
+        if (wrongAnswer) {
+            timerCount = timerCount - 10;
+            var reduceScore = timerCount - 10;
+            totScore = reduceScore
+        }
+        displayQuestion()
+    }
+
+}//end of check answer block
 
 //---------Function for form submit initials and read results
-
 //need local storage function
-//Got rid of checkAnswers function
