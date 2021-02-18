@@ -16,7 +16,7 @@ var rightChoice = false;
 totScore = 70;
 
 
-var currentQuestionIndex;
+var currentQuestionIndex = 0;
 //questions to be asked --array-object
 var quizQuestions = [
     {
@@ -27,7 +27,7 @@ var quizQuestions = [
             c: 'alerts',
             d: 'numbers',
         },
-        correctAnswer: 'c'//key&value
+        correctAnswer: 'alerts'//key&value
     },
     {
         question: 'The condition in an if/else statement is enclosed within?',
@@ -37,7 +37,7 @@ var quizQuestions = [
             c: 'parentheses',
             d: 'square brackets'
         },
-        correctAnswer: 'c'
+        correctAnswer: 'parentheses'
 
     },
     {
@@ -48,7 +48,7 @@ var quizQuestions = [
             c: 'boolean',
             d: 'all of the above'
         },
-        correctAnswer: 'd'
+        correctAnswer: 'all of the above'
 
     },
     {
@@ -59,7 +59,7 @@ var quizQuestions = [
             c: 'quotes',
             d: 'parentheses',
         },
-        correctAnswer: 'c'
+        correctAnswer: 'quotes'
 
     },
     {
@@ -70,7 +70,7 @@ var quizQuestions = [
             c: 'alerts',
             d: 'console.log',
         },
-        correctAnswer: 'd'
+        correctAnswer: 'console.log'
 
     },
 ]
@@ -78,9 +78,8 @@ var quizQuestions = [
 
 //---start game function, starts timer, presents questions and mltpl choices button
 function startGame() {
-    startButton.disabled = true;
-    rightChoice = false;//????????? not sure if i need this here
-    currentQuestionIndex = 0;
+    startButton.remove();
+    // rightChoice = false;//????????? not sure if i need this here
     var currentQuestion = quizQuestions[currentQuestionIndex];
     displayQuestion(currentQuestion);
     timer();
@@ -93,7 +92,7 @@ function timer() {
         timerCount--;
         timerEl.textContent = timerCount;
         //Test if time has ran out
-        if (timerCount === 0) {
+        if (timerCount <= 0) {
             //Clears the interval
             clearInterval(count);
         }
@@ -107,65 +106,71 @@ startButton.addEventListener('click', startGame);
 function displayQuestion(question) {
     // console.log('display question:', questions);//to see what this object contains
 
+
+
     var questionElem = document.createElement('h3');//creates an empty h3 tag, stores in questionElem
 
     questionElem.textContent = question.question;//put text into my h3
-
+    document.getElementById('question').innerHTML = "";
     document.getElementById('question').append(questionElem);//stick my questionElem into #question
 
     var btnElA = document.createElement('button');//creates the button for multiple choice
-    btnElA.textContent = quizQuestions[0].answers.a;//access the array object for iteration and write it to the html
+    btnElA.textContent = quizQuestions[currentQuestionIndex].answers.a;//access the array object for iteration and write it to the html
+    document.getElementById('answer-a').innerHTML = "";
     document.getElementById('answer-a').appendChild(btnElA);//access the assoc div and append the button with content
 
     var btnElB = document.createElement('button');
-    btnElB.textContent = quizQuestions[0].answers.b;
+    btnElB.textContent = quizQuestions[currentQuestionIndex].answers.b;
+    document.getElementById('answer-b').innerHTML = "";
     document.getElementById('answer-b').appendChild(btnElB);
 
     var btnElC = document.createElement('button');
-    btnElC.textContent = quizQuestions[0].answers.c;
+    btnElC.textContent = quizQuestions[currentQuestionIndex].answers.c;
+    document.getElementById('answer-c').innerHTML = "";
     document.getElementById('answer-c').appendChild(btnElC);
 
     var btnElD = document.createElement('button');
-    btnElD.textContent = quizQuestions[0].answers.d;
+    btnElD.textContent = quizQuestions[currentQuestionIndex].answers.d;
+    document.getElementById('answer-d').innerHTML = "";
     document.getElementById('answer-d').appendChild(btnElD);
     //---------------------------------
     //Instead of addEventListener I am using this when user clicks on any button execute checkAnswer which will run the rightAnswer or wrongAnswer function
     //????????????????????????????????????
-    btnElA.setAttribute("onClick", "checkAnswer()");
-    btnElB.setAttribute("onClick", "checkAnswer()");
-    btnElC.setAttribute("onClick", "checkAnswer()");
-    btnElD.setAttribute("onClick", "checkAnswer()");
+    //btnElA.setAttribute("onClick", checkAnswer);
+    btnElA.onclick = checkAnswer;
+    btnElB.onclick = checkAnswer;
+    btnElC.onclick = checkAnswer;
+    btnElD.onclick = checkAnswer;
 };//end of displayQuestions block
 
 // When a button is clicked checkAnswer function will run rightAnswer or wrongAnswer function if conditional is met
+// console.log(button.value)
 function checkAnswer(event) {
-    if (quizQuestions[0].correctAnswer === quizQuestions.answers) {
-        rightChoice = true;
-        rightAnswer();
+    console.log(event.target.textContent);
+    if (quizQuestions[currentQuestionIndex].correctAnswer !== event.target.textContent) {
+        timerCount = timerCount - 10;
     }
-    else {
-        wrongChoice = true;
-        wrongAnswer();
+    
+    currentQuestionIndex++;
+
+    if(currentQuestionIndex >= quizQuestions.length) {
+        end();
+    } else {
+        displayQuestion(quizQuestions[currentQuestionIndex])
 
     }
-    //functions to run if conditional is met
-    //if user gets the multiple choice question correct, move to next question
-    function rightAnswer() {
-        if (rightChoice) {
-            displayQuestion()
-        }
-    }
-    //if user gets multiple choice question incorrect, subtract 10 from totScore and reduce time by 10 seconds and move user to next question
-    function wrongAnswer() {
-        if (wrongAnswer) {
-            timerCount = timerCount - 10;
-            var reduceScore = timerCount - 10;
-            totScore = reduceScore
-        }
-        displayQuestion()
-    }
 
-}//end of check answer block
+}
 
+
+function end() {
+
+
+    
+    window.location.href = "results.html"
+}
+
+//end of check answer block
+// button.addEventListener('click', checkAnswer) 
 //---------Function for form submit initials and read results
 //need local storage function
