@@ -13,7 +13,7 @@ var question;
 var wrongChoice = false;
 var rightChoice = false;
 //starting score & starting time
-totScore = 70;
+startScore = 70;//?? may need to be in score.js
 
 
 var currentQuestionIndex = 0;
@@ -79,7 +79,6 @@ var quizQuestions = [
 //---start game function, starts timer, presents questions and mltpl choices button
 function startGame() {
     startButton.remove();
-    // rightChoice = false;//????????? not sure if i need this here
     var currentQuestion = quizQuestions[currentQuestionIndex];
     displayQuestion(currentQuestion);
     timer();
@@ -93,8 +92,9 @@ function timer() {
         timerEl.textContent = timerCount;
         //Test if time has ran out
         if (timerCount <= 0) {
-            //Clears the interval
+            //Clears the interval, <=0 keeps it from going into negative and wont take away points if less than 10 secs left
             clearInterval(count);
+            endGame()
         }
     }, 1000)
     return timerCount;
@@ -105,56 +105,54 @@ startButton.addEventListener('click', startGame);
 //---Function for the questions in quiz
 function displayQuestion(question) {
     // console.log('display question:', questions);//to see what this object contains
-
-
-
     var questionElem = document.createElement('h3');//creates an empty h3 tag, stores in questionElem
 
     questionElem.textContent = question.question;//put text into my h3
-    document.getElementById('question').innerHTML = "";
+    document.getElementById('question').innerHTML = "";//emptys string for next question
     document.getElementById('question').append(questionElem);//stick my questionElem into #question
 
     var btnElA = document.createElement('button');//creates the button for multiple choice
     btnElA.textContent = quizQuestions[currentQuestionIndex].answers.a;//access the array object for iteration and write it to the html
-    document.getElementById('answer-a').innerHTML = "";
-    document.getElementById('answer-a').appendChild(btnElA);//access the assoc div and append the button with content
+    document.getElementById('answer-a').innerHTML = "";//emptys string for next answer
+    document.getElementById('answer-a').appendChild(btnElA);//access the assoc div and append the button with string value from the array object-object
+    btnElA.setAttribute('style', 'padding:10px', 'height:auto');
 
     var btnElB = document.createElement('button');
     btnElB.textContent = quizQuestions[currentQuestionIndex].answers.b;
     document.getElementById('answer-b').innerHTML = "";
     document.getElementById('answer-b').appendChild(btnElB);
+    btnElB.setAttribute('style', 'padding:10px', 'height:auto');
 
     var btnElC = document.createElement('button');
     btnElC.textContent = quizQuestions[currentQuestionIndex].answers.c;
     document.getElementById('answer-c').innerHTML = "";
     document.getElementById('answer-c').appendChild(btnElC);
+    btnElC.setAttribute('style', 'padding:10px', 'height:auto');
 
     var btnElD = document.createElement('button');
     btnElD.textContent = quizQuestions[currentQuestionIndex].answers.d;
     document.getElementById('answer-d').innerHTML = "";
     document.getElementById('answer-d').appendChild(btnElD);
+    btnElD.setAttribute('style', 'padding:10px', 'height:auto');
     //---------------------------------
-    //Instead of addEventListener I am using this when user clicks on any button execute checkAnswer which will run the rightAnswer or wrongAnswer function
-    //????????????????????????????????????
-    //btnElA.setAttribute("onClick", checkAnswer);
+    //Instead of addEventListener  and setAttribute I am using this when user clicks on any button the .onclick will call checkAnswer
     btnElA.onclick = checkAnswer;
     btnElB.onclick = checkAnswer;
     btnElC.onclick = checkAnswer;
     btnElD.onclick = checkAnswer;
 };//end of displayQuestions block
 
-// When a button is clicked checkAnswer function will run rightAnswer or wrongAnswer function if conditional is met
-// console.log(button.value)
+// When a button is clicked checkAnswer gets called and will execute an arguement `event`, if the correctAnswer does not match the textContent of the button clicked, then reduce timerCount by 10 seconds
 function checkAnswer(event) {
     console.log(event.target.textContent);
     if (quizQuestions[currentQuestionIndex].correctAnswer !== event.target.textContent) {
         timerCount = timerCount - 10;
     }
-    
+
     currentQuestionIndex++;
 
-    if(currentQuestionIndex >= quizQuestions.length) {
-        end();
+    if (currentQuestionIndex >= quizQuestions.length) {
+        endGame();
     } else {
         displayQuestion(quizQuestions[currentQuestionIndex])
 
@@ -162,15 +160,11 @@ function checkAnswer(event) {
 
 }
 
-
-function end() {
-
-
-    
+//show the game is over to user    
+//need the left over seconds for score 
+//need to setItem to local storage
+function endGame() {
+    var timeScore = startScore - timerCount
+    localStorage.setItem('score', timeScore)
     window.location.href = "results.html"
 }
-
-//end of check answer block
-// button.addEventListener('click', checkAnswer) 
-//---------Function for form submit initials and read results
-//need local storage function
