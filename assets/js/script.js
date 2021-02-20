@@ -165,6 +165,7 @@ function checkAnswer(event) {
 //need to setItem to local storage
 function endGame() {
     var timeScore = startScore - timerCount
-    localStorage.setItem('score', timeScore)
+    localStorage.setItem('score', JSON.stringify(timeScore))
+    
     window.location.href = "results.html"
 }
