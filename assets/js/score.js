@@ -11,9 +11,15 @@ var userScore = localStorage.getItem('score');
 // console.log(userInitials, userScore);
 scoredTime.textContent = userScore;
 
+var highScores;
+
 //read high scores and display make a function
-function displayHighscore (){
- 
+function displayHighscore() {
+
+    for (var i = 0; i < highScores.length; i++) {
+        
+
+    }
 
 }
 
@@ -28,9 +34,9 @@ submit.addEventListener('click', function (event) {
     var userInitials = initialsInput.value;
 
     console.log(scoredTime, userScore);
-    
+
     //read local storage high scores
-    var highScores = JSON.parse(localStorage.getItem('highScores'));
+    highScores = JSON.parse(localStorage.getItem('highScores'));
 
     //push new highscore and set local storage
     highScores.push({ initials: userInitials, score: userScore })
