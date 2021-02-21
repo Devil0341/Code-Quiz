@@ -17,10 +17,10 @@ scoredTime.textContent = userScore;
 function displayHighscore() {
 
     for (var i = 0; i < highScores.length; i++) {
-        var addedScores = highScores[i]
+        var addedScores = highScores[i];
         var h2 = document.createElement('h2');
-        h2.textContent = addedScores
-        h2.setAttribute('initials', i);
+        h2.textContent = addedScores.initials + ':' + addedScores.score;
+        // h2.setAttribute('initials', i);
         scoredTime.appendChild(h2);
     }
 
