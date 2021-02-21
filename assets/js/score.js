@@ -14,14 +14,17 @@ scoredTime.textContent = userScore;
 
 
 //read high scores and display make a function
-// function displayHighscore() {
+function displayHighscore() {
 
-//     for (var i = 0; i < highScores.length; i++) {
-        
+    for (var i = 0; i < highScores.length; i++) {
+        var addedScores = highScores[i]
+        var h2 = document.createElement('h2');
+        h2.textContent = addedScores
+        h2.setAttribute('initials', i);
+        scoredTime.appendChild(h2);
+    }
 
-//     }
-
-// }
+}
 
 submit.addEventListener('click', function (event) {
     event.preventDefault();
@@ -37,9 +40,12 @@ submit.addEventListener('click', function (event) {
 
     //read local storage high scores
     highScores = JSON.parse(localStorage.getItem('highScores'));
+    if (highScores == null) {
+        highScores = [];
+    }
 
     //push new highscore and set item in local storage
-    highScores.push({initials: userInitials, score: userScore});
+    highScores.push({ initials: userInitials, score: userScore });
     localStorage.setItem('highScores', JSON.stringify(highScores))
 
     //call function line 14
