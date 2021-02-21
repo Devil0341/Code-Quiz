@@ -6,22 +6,22 @@ var para = document.querySelector('p');
 var submit = document.getElementById('submit');
 var scoredTime = document.getElementById('results')
 var userInitials = document.getElementById('initials');
-
+var highScores;
 var userScore = localStorage.getItem('score');
-// console.log(userInitials, userScore);
+console.log(userInitials, userScore);
 scoredTime.textContent = userScore;
 
-var highScores;
+
 
 //read high scores and display make a function
-function displayHighscore() {
+// function displayHighscore() {
 
-    for (var i = 0; i < highScores.length; i++) {
+//     for (var i = 0; i < highScores.length; i++) {
         
 
-    }
+//     }
 
-}
+// }
 
 submit.addEventListener('click', function (event) {
     event.preventDefault();
@@ -38,8 +38,8 @@ submit.addEventListener('click', function (event) {
     //read local storage high scores
     highScores = JSON.parse(localStorage.getItem('highScores'));
 
-    //push new highscore and set local storage
-    highScores.push({ initials: userInitials, score: userScore })
+    //push new highscore and set item in local storage
+    highScores.push({initials: userInitials, score: userScore});
     localStorage.setItem('highScores', JSON.stringify(highScores))
 
     //call function line 14
