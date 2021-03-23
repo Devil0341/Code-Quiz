@@ -15,4 +15,4 @@ Making a Code Quiz to learn more about the functionality of javascript with time
 [Screencast](https://youtu.be/4lRAxtu9PG8)
 ![](./assets/images/code-quiz.gif)
 
-[Deployed Link](https://devil0341.github.io/Code-Quiz/)
+[Deployed Link](https://gregpetropoulos.github.io/Code-Quiz/)
